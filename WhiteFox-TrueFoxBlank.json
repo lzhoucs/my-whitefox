@@ -28,6 +28,10 @@
                 "1": {
                     "key": "#:flashMode()",
                     "label": "FLASH"
+                },
+                "2": {
+                    "key": "#:None",
+                    "label": "NONE"
                 }
             }
         },
@@ -269,8 +273,12 @@
             "h": 4,
             "layers": {
                 "0": {
-                    "key": "LCK1",
-                    "label": "LOCK-1"
+                    "key": "NEXT LAYER",
+                    "label": "NEXT-\u0192"
+                },
+                "1": {
+                    "key": "NEXT LAYER",
+                    "label": "NEXT-\u0192"
                 }
             }
         },

@@ -796,17 +796,17 @@
                 ]
             },
             ":0 S016": {
-                "kll": "S0x010 : layerLock(1);",
+                "kll": "S0x010 : layerRotate(0);",
                 "result": [
                     [
                         {
                             "args": [
                                 {
                                     "type": "CapArgValue",
-                                    "value": 1
+                                    "value": 0
                                 }
                             ],
-                            "name": "layerLock",
+                            "name": "layerRotate",
                             "type": "Capability"
                         }
                     ]
@@ -2062,6 +2062,31 @@
                     ]
                 ]
             },
+            ":0 S016": {
+                "kll": "S0x010 : layerRotate(0);",
+                "result": [
+                    [
+                        {
+                            "args": [
+                                {
+                                    "type": "CapArgValue",
+                                    "value": 0
+                                }
+                            ],
+                            "name": "layerRotate",
+                            "type": "Capability"
+                        }
+                    ]
+                ],
+                "trigger": [
+                    [
+                        {
+                            "type": "ScanCode",
+                            "uid": 16
+                        }
+                    ]
+                ]
+            },
             ":0 S059": {
                 "kll": "S0x03b : CONS0x0cd;",
                 "result": [
@@ -2178,6 +2203,51 @@
                         {
                             "type": "ScanCode",
                             "uid": 71
+                        }
+                    ]
+                ]
+            }
+        },
+        "2": {
+            ":0 S001": {
+                "kll": "S0x001 : None;",
+                "result": [
+                    [
+                        {
+                            "type": "None"
+                        }
+                    ]
+                ],
+                "trigger": [
+                    [
+                        {
+                            "type": "ScanCode",
+                            "uid": 1
+                        }
+                    ]
+                ]
+            },
+            ":0 S067": {
+                "kll": "S0x043 : layerShift(1);",
+                "result": [
+                    [
+                        {
+                            "args": [
+                                {
+                                    "type": "CapArgValue",
+                                    "value": 1
+                                }
+                            ],
+                            "name": "layerShift",
+                            "type": "Capability"
+                        }
+                    ]
+                ],
+                "trigger": [
+                    [
+                        {
+                            "type": "ScanCode",
+                            "uid": 67
                         }
                     ]
                 ]
