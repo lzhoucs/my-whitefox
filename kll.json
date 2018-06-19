@@ -2087,6 +2087,35 @@
                     ]
                 ]
             },
+            ":0 S046": {
+                "kll": "S0x02e : ledControl(1,15);",
+                "result": [
+                    [
+                        {
+                            "args": [
+                                {
+                                    "type": "CapArgValue",
+                                    "value": 1
+                                },
+                                {
+                                    "type": "CapArgValue",
+                                    "value": 15
+                                }
+                            ],
+                            "name": "ledControl",
+                            "type": "Capability"
+                        }
+                    ]
+                ],
+                "trigger": [
+                    [
+                        {
+                            "type": "ScanCode",
+                            "uid": 46
+                        }
+                    ]
+                ]
+            },
             ":0 S059": {
                 "kll": "S0x03b : CONS0x0cd;",
                 "result": [
@@ -2121,6 +2150,35 @@
                         {
                             "type": "ScanCode",
                             "uid": 60
+                        }
+                    ]
+                ]
+            },
+            ":0 S061": {
+                "kll": "S0x03d : ledControl(0,15);",
+                "result": [
+                    [
+                        {
+                            "args": [
+                                {
+                                    "type": "CapArgValue",
+                                    "value": 0
+                                },
+                                {
+                                    "type": "CapArgValue",
+                                    "value": 15
+                                }
+                            ],
+                            "name": "ledControl",
+                            "type": "Capability"
+                        }
+                    ]
+                ],
+                "trigger": [
+                    [
+                        {
+                            "type": "ScanCode",
+                            "uid": 61
                         }
                     ]
                 ]

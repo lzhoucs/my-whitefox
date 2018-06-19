@@ -656,6 +656,10 @@
                 "0": {
                     "key": "PAGEUP",
                     "label": "PGUP"
+                },
+                "1": {
+                    "key": "#:ledControl( 1, 15 )",
+                    "label": "LED+"
                 }
             }
         },
@@ -846,6 +850,10 @@
                 "0": {
                     "key": "PAGEDOWN",
                     "label": "PGDN"
+                },
+                "1": {
+                    "key": "#:ledControl( 0, 15 )",
+                    "label": "LED-"
                 }
             }
         },
