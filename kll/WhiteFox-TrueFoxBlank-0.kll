@@ -40,7 +40,7 @@ U"P" : U"P";
 U"LBRACE" : U"[";
 U"RBRACE" : U"]";
 U"BACKSPACE" : U"BACKSPACE";
-U"DELETE" : None;
+U"DELETE" : U"0";
 U"CAPSLOCK" : U"LCTRL";
 U"A" : U"A";
 U"S" : U"S";
