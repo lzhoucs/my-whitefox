@@ -1,0 +1,4 @@
+* Build steps
+  - From ~../kiibohd-controller/kll/layouts~ dir, create symbolic link myklls pointing to ~./kll~ dir
+  - Modify ~../kiibohd-controller/Keyboards/whitefox.bash~ to add any kll files in ~./kll/~
+  - Run ~./build-whitefox.sh~
