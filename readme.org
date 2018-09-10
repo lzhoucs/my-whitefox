@@ -2,3 +2,14 @@
   - From ~../kiibohd-controller/kll/layouts~ dir, create symbolic link myklls pointing to ~./kll~ dir
   - Modify ~../kiibohd-controller/Keyboards/whitefox.bash~ to add any kll files in ~./kll/~
   - Run ~./build-whitefox.sh~
+
+* Tips and tricks
+| Title                                           | Configurator  | kll file                                                 |
+|-------------------------------------------------+---------------+----------------------------------------------------------|
+| Clear a key so it falls through previous layers | Use ~CLR-KEY~ | Not do anything (make sure the key definition not exist) |
+
+
+* Useful Links
+** Key bindings
+   - https://github.com/kiibohd/KiiConf/issues/25#issuecomment-181032765
+   - https://github.com/kiibohd/KiiConf/wiki/Function-Layers
