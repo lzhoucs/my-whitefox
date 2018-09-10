@@ -21,7 +21,6 @@ U"9" : U"F9";
 U"0" : U"F10";
 U"MINUS" : U"F11";
 U"EQUAL" : U"F12";
-U"PRINTSCREEN" : U"NEXT LAYER";
 U"PAGEUP" : ledControl( 1, 15 );
 U"RSHIFT" : CONS"PAUSEPLAY";
 U"UP" : CONS"VOLUMEUP";
