@@ -19,6 +19,8 @@
 |-------------------------------------------------+---------------+----------------------------------------------------------|
 | Clear a key so it falls through previous layers | Use ~CLR-KEY~ | Not do anything (make sure the key definition not exist) |
 
+* Good ideas
+  - holding "c" could actually work as "control + c": https://github.com/kiibohd/kll/issues/23#issuecomment-410558660
 
 * Useful Links
 ** Dependencies
@@ -27,3 +29,5 @@
 ** Key bindings
    - https://github.com/kiibohd/KiiConf/issues/25#issuecomment-181032765
    - https://github.com/kiibohd/KiiConf/wiki/Function-Layers
+** Hack into kiibohd
+   - Adding New Capabilities to Kiibohd: http://atlanis.net/blog/adding-new-capabilities-to-kiibohd/

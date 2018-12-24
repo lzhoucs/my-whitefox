@@ -8,7 +8,16 @@ KLL = "0.3c";
 Date = "2016-05-30";
 Generator = "KIICONF 0.2";
 
+# layer indicator
+# TODO does not seem to be implemented according to spec and https://github.com/kiibohd/kll/issues/23
+# U"DELETE"(H:1s) : U"0"; # 5.1.11 Timing
 
+# ==== "Any Key"(DELETE) definition
+U"DELETE" + U"ESC" : flashMode(); # 5.1.10 Combination
+# syntax is correct on both left and right hand side, however no key code can be entered after flashMode() it seems
+# U"DELETE" + U"ENTER" : flashMode(), U"ENTER";
+# not working as expected, with or without isolation
+# U"DELETE" + U"P" i: 'NST!851229'; # 5.1.9 Sequence
 
 U"ESC" : U"ESC";
 U"1" : U"1";
@@ -40,7 +49,6 @@ U"P" : U"P";
 U"LBRACE" : U"[";
 U"RBRACE" : U"]";
 U"BACKSPACE" : U"BACKSPACE";
-U"DELETE" : U"0";
 U"CAPSLOCK" : U"LCTRL";
 U"A" : U"A";
 U"S" : U"S";

@@ -8,7 +8,8 @@ KLL = "0.3c";
 Date = "2016-05-30";
 Generator = "KIICONF 0.2";
 
-U"DELETE" : U"2";
+# layer indicator
+# U"DELETE"(500ms) : U"2"; # 5.1.11 Timing
 
 U"X" : U"F10";
 U"S" : U"F11";
