@@ -21,6 +21,9 @@
 
 
 * Useful Links
+** Dependencies
+   - https://github.com/kiibohd/controller/
+   - https://github.com/kiibohd/kll
 ** Key bindings
    - https://github.com/kiibohd/KiiConf/issues/25#issuecomment-181032765
    - https://github.com/kiibohd/KiiConf/wiki/Function-Layers
