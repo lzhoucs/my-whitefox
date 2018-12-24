@@ -8,7 +8,8 @@ echo ''
 
 cd ../kiibohd-controller/Keyboards
 
-./whitefox.bash
+pipenv install
+pipenv run ./whitefox.bash
 
 echo ''
 echo '============ Finished building my whitefox keyboard ============='

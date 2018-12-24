@@ -5,9 +5,7 @@ echo ''
 echo '============ Start flashing my whitefox keyboard ============='
 echo ''
 
-# cd ../kiibohd-controller/Keyboards
-
-dfu-util -D ../kiibohd-controller/Keyboards/darwin17.MyWhiteFoxBuild.gcc.ninja/kiibohd.dfu.bin
+dfu-util -D ../kiibohd-controller/Keyboards/darwin18.MyWhiteFoxBuild.gcc.ninja/kiibohd.dfu.bin
 
 echo ''
 echo '============ Finished flashing my whitefox keyboard ============='

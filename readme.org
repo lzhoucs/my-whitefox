@@ -1,7 +1,18 @@
 * Build steps
+** Old way (no longer works after pipenv)
   - From ~../kiibohd-controller/kll/layouts~ dir, create symbolic link myklls pointing to ~./kll~ dir
   - Modify ~../kiibohd-controller/Keyboards/whitefox.bash~ to add any kll files in ~./kll/~
   - Run ~./build-whitefox.sh~
+
+** New way
+   *Note*: This require fix: https://github.com/kiibohd/controller/commit/5dd72c2b5b36cd9c33e9d1061ece96a0b0c770ea
+   - Run ~./build-whitefox.sh~ once to generate ~../kiibohd-controller/Keyboards/<BuildDir>~.
+     Note: ~BuildDir~ varies by os and other conditions. e.g: ~darwin18.MyWhiteFoxBuild.gcc.ninja~
+   - From the ~BuildDir~: ~../kiibohd-controller/Keyboards/<BuildDir>~, create symbolic link myklls pointing to ~./kll~ dir
+   - Modify ~../kiibohd-controller/Keyboards/whitefox.bash~ to add any kll files in ~./kll/~
+   - Rerun ~./build-whitefox.sh~
+* Flash steps
+  After build is done, enter ~./flash.sh~ in command line, but before hitting <ENTER>, first enter flash mode, then use virtual keyboard to hit enter.
 
 * Tips and tricks
 | Title                                           | Configurator  | kll file                                                 |
