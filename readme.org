@@ -10,7 +10,7 @@
      Note: ~BuildDir~ varies by os and other conditions. e.g: ~darwin18.MyWhiteFoxBuild.gcc.ninja~
    - From the ~BuildDir~: ~../kiibohd-controller/Keyboards/<BuildDir>~, create symbolic link myklls pointing to ~./kll~ dir
    - Modify ~../kiibohd-controller/Keyboards/whitefox.bash~ to add any kll files in ~./kll/~
-   - Rerun ~./build-whitefox.sh~
+   - Rerun ~./build-whitefox.sh~ or use ~./build-whitefox.sh -f~ for fast mode build.
 * Flash steps
   After build is done, enter ~./flash.sh~ in command line, but before hitting <ENTER>, first enter flash mode, then use virtual keyboard to hit enter.
 
