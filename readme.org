@@ -1,3 +1,9 @@
+* Key programmings(mappings)
+** Get the USB Keycode
+  The following way works for me. Go to [[https://configurator.input.club/][configurator]], inspect a particular key to get the key mapping:
+  [[file:images/keycode.png]] 
+
+  Then add double quotes. For example `CONS:MUTE` from the inspector becomes `CONS:"MUTE"` to be used in final key mapping
 * Build steps
 ** Old way (no longer works after pipenv)
   - From ~../kiibohd-controller/kll/layouts~ dir, create symbolic link myklls pointing to ~./kll~ dir
@@ -12,8 +18,10 @@
    - Modify ~../kiibohd-controller/Keyboards/whitefox.bash~ to add any kll files in ~./kll/~
    - Rerun ~./build-whitefox.sh~ or use ~./build-whitefox.sh -f~ for fast mode build.
 * Flash steps
-  After build is done, enter ~./flash.sh~ in command line, but before hitting <ENTER>, first enter flash mode, then use virtual keyboard to hit enter.
-
+** Approach 1(with virtual keyboard)
+  After build is done, enter ~./flash-whitefox.sh~ in command line, but before hitting <ENTER>, first enter flash mode, then use virtual keyboard to hit enter.
+** Approach 2(without virtual keyboard)
+  After build is done, run ~./flash-whitefox-wait.sh~ in command line. Then enter flashMode with your key combination(`DELELE` + `ESC` for example)
 * Tips and tricks
 | Title                                           | Configurator  | kll file                                                 |
 |-------------------------------------------------+---------------+----------------------------------------------------------|
