@@ -9,6 +9,7 @@ Date = "2016-05-30";
 Generator = "KIICONF 0.2";
 
 # layer indicator
+U"DELETE" : U"1";
 # U"DELETE"(500ms) : U"1"; # 5.1.11 Timing
 
 U"1" : U"F1";
