@@ -11,12 +11,17 @@
   - Run ~./build-whitefox.sh~
 
 ** New way
-   *Note*: This require fix: https://github.com/kiibohd/controller/commit/5dd72c2b5b36cd9c33e9d1061ece96a0b0c770ea
-   - Run ~./build-whitefox.sh~ once to generate ~../kiibohd-controller/Keyboards/<BuildDir>~.
+*Note*: This require fix: https://github.com/kiibohd/controller/commit/5dd72c2b5b36cd9c33e9d1061ece96a0b0c770ea
+
+Step 1 and 2 are only required once in an OS major version update. E.g darwin18
+vs darwin19.
+Step 3 is only required when new layer files are added.
+
+   1. Run ~./build-whitefox.sh~ once to generate ~../kiibohd-controller/Keyboards/<BuildDir>~.
      Note: ~BuildDir~ varies by os and other conditions. e.g: ~darwin18.MyWhiteFoxBuild.gcc.ninja~
-   - From the ~BuildDir~: ~../kiibohd-controller/Keyboards/<BuildDir>~, create symbolic link myklls pointing to ~./kll~ dir
-   - Modify ~../kiibohd-controller/Keyboards/whitefox.bash~ to add any kll files in ~./kll/~
-   - Rerun ~./build-whitefox.sh~ or use ~./build-whitefox.sh -f~ for fast mode build.
+   2. From the ~BuildDir~: ~../kiibohd-controller/Keyboards/<BuildDir>~, create symbolic link myklls pointing to ~./kll~ dir
+   3. Modify ~../kiibohd-controller/Keyboards/whitefox.bash~ to add any kll files in ~./kll/~
+   4. Rerun ~./build-whitefox.sh~ or use ~./build-whitefox.sh -f~ for fast mode build.
 * Flash steps
 ** Approach 1(with virtual keyboard)
   After build is done, enter ~./flash-whitefox.sh~ in command line, but before hitting <ENTER>, first enter flash mode, then use virtual keyboard to hit enter.
