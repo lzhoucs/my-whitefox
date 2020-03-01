@@ -19,7 +19,10 @@ Step 3 is only required when new layer files are added.
 
    1. Run ~./build-whitefox.sh~ once to generate ~../kiibohd-controller/Keyboards/<BuildDir>~.
      Note: ~BuildDir~ varies by os and other conditions. e.g: ~darwin18.MyWhiteFoxBuild.gcc.ninja~
-   2. From the ~BuildDir~: ~../kiibohd-controller/Keyboards/<BuildDir>~, create symbolic link myklls pointing to ~./kll~ dir
+   2. From the ~BuildDir~: ~../kiibohd-controller/Keyboards/<BuildDir>~, create symbolic link ~~myklls~ pointing to ~./kll~ dir
+      #+BEGIN_SRC sh
+ln -s ../../../my-whiteFox-TrueFox/klls/ myklls
+      #+END_SRC
    3. Modify ~../kiibohd-controller/Keyboards/whitefox.bash~ to add any kll files in ~./kll/~
    4. Rerun ~./build-whitefox.sh~ or use ~./build-whitefox.sh -f~ for fast mode build.
 * Flash steps
@@ -44,3 +47,5 @@ Step 3 is only required when new layer files are added.
    - https://github.com/kiibohd/KiiConf/wiki/Function-Layers
 ** Hack into kiibohd
    - Adding New Capabilities to Kiibohd: http://atlanis.net/blog/adding-new-capabilities-to-kiibohd/
+* TODOs
+- Output layout json as part of the build process
