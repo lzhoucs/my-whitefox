@@ -33,3 +33,9 @@ U"PAGEDOWN" : ledControl( 0, 15 );
 U"LEFT" : CONS"SCANPREVIOUSTRACK";
 U"DOWN" : CONS"VOLUMEDOWN";
 U"RIGHT" : CONS"SCANNEXTTRACK";
+
+# TODO temp workaround until isolated keypress is working in layer 0
+U"P": 'NST!851229';
+
+# rust run macro
+U"R": U"SPACE", 'mbr';

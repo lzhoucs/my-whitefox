@@ -8,17 +8,27 @@ KLL = "0.3c";
 Date = "2016-05-30";
 Generator = "KIICONF 0.2";
 
-# layer indicator
+# Layer indicator, note it always outputs the mapped value, such as 0 even if it is also mapped as part of a sequence, e.g: U"DELETE" + U"P"
+# So to avoid key pollution, we get rid of its default output(by mapping to None), hoping layer indicator can be implemented natively in LED
+# TODO Since key isolation is not working, which blocks a couple of Any Key defined, we use it as layer indicator for now
+# U"DELETE" : None;
 U"DELETE" : U"0";
 # TODO does not seem to be implemented according to spec and https://github.com/kiibohd/kll/issues/23
 # U"DELETE"(H:1s) : U"0"; # 5.1.11 Timing
 
+
 # ==== "Any Key"(DELETE) definition
 U"DELETE" + U"ESC" : flashMode(); # 5.1.10 Combination
-# syntax is correct on both left and right hand side, however no key code can be entered after flashMode() it seems
+
+# TODO syntax is correct on both left and right hand side, however no key code can be entered after flashMode() it seems
 # U"DELETE" + U"ENTER" : flashMode(), U"ENTER";
-# not working as expected, with or without isolation
-# U"DELETE" + U"P" i: 'NST!851229'; # 5.1.9 Sequence
+
+# Not working as I tried(P is outputted), also according to https://github.com/kiibohd/kll/issues/23#issuecomment-450025366
+# U"DELETE" + U"P" i: 'PSWD';
+
+# rust run macro
+# U"DELETE" + U"R" i: U"SPACE", 'mbr';
+
 
 U"ESC" : U"ESC";
 U"1" : U"1";
@@ -78,11 +88,14 @@ U"SLASH" : U"/";
 U"RSHIFT" : U"RSHIFT";
 U"UP" : U"UP";
 U"PAGEDOWN" : U"PAGEDOWN";
+# TODO not sure how to use this one yet
 U"LCTRL" : None;
+# Swap Alt and Cmd, no RALT mapped to
 U"LGUI" : U"LALT";
 U"LALT" : U"LGUI";
-U"SPACE" : U"SPACE";
 U"RALT" : U"RGUI";
+
+U"SPACE" : U"SPACE";
 U"FUNCTION1" : U"FUNCTION1";
 U"LEFT" : U"LEFT";
 U"DOWN" : U"DOWN";
@@ -90,6 +103,7 @@ U"RIGHT" : U"RIGHT";
 
 
 
+# TODO no idea what it means
 A[all_on] <= start, pfunc:interp;
 A[all_on, 1] <= P[c:0%](255), P[c:100%](255);
 

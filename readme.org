@@ -34,6 +34,7 @@ ln -s ../../../my-whiteFox-TrueFox/klls/ myklls
 | Title                                           | Configurator  | kll file                                                 |
 |-------------------------------------------------+---------------+----------------------------------------------------------|
 | Clear a key so it falls through previous layers | Use ~CLR-KEY~ | Not do anything (make sure the key definition not exist) |
+| Clear a key so it do nothing                    | Use ~None~    | NONE, see: 5.2.2 None                                    |
 
 * Good ideas
   - holding "c" could actually work as "control + c": https://github.com/kiibohd/kll/issues/23#issuecomment-410558660
