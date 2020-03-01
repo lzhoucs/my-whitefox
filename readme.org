@@ -19,7 +19,7 @@ Step 3 is only required when new layer files are added.
 
    1. Run ~./build-whitefox.sh~ once to generate ~../kiibohd-controller/Keyboards/<BuildDir>~.
      Note: ~BuildDir~ varies by os and other conditions. e.g: ~darwin18.MyWhiteFoxBuild.gcc.ninja~
-   2. From the ~BuildDir~: ~../kiibohd-controller/Keyboards/<BuildDir>~, create symbolic link ~~myklls~ pointing to ~./kll~ dir
+   2. From the ~BuildDir~: ~../kiibohd-controller/Keyboards/<BuildDir>~, create symbolic link ~~myklls~ pointing to ~./klls~ dir
       #+BEGIN_SRC sh
 ln -s ../../../my-whiteFox-TrueFox/klls/ myklls
       #+END_SRC
