@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # A wrapper over the target build command 'whitefox.bash'
-BuildDir=darwin18.MyWhiteFoxBuild.gcc.ninja
+FIRMWARE_FILE=darwin1*.MyWhiteFoxBuild.gcc.ninja/kiibohd.dfu.bin
 fast_mode=false
 
 while getopts ":f" opt; do
@@ -31,7 +31,8 @@ fi
 
 pipenv run ./whitefox.bash
 
-mv ${BuildDir}/kiibohd.dfu.bin ../../my-whiteFox-TrueFox/
+echo "============ Moving Firmware from [$(ls $FIRMWARE_FILE)] to [../../my-whiteFox-TrueFox/] ==========="
+mv $FIRMWARE_FILE ../../my-whiteFox-TrueFox/
 
 echo ''
 echo '============ Finished building my whitefox keyboard ============='
