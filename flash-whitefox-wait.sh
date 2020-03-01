@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-# Load via dfu-util
-# Used for McHCK based uCs
+# the following is copied from controller/LoadFile/load.dfu
 if type dfu-util &>/dev/null; then
 	echo "Waiting for device..."
 	while true; do
