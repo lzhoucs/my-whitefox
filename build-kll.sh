@@ -22,7 +22,7 @@ while getopts ":f" opt; do
 done
 
 echo ''
-echo '============ Start building my whitefox keyboard ============='
+echo '============ Building KLL Firmware ============='
 echo ''
 
 cd $MY_DIR/$KLL_BUILD_PATH
@@ -36,9 +36,9 @@ fi
 
 pipenv run ./whitefox.bash
 
-echo "============ Moving Firmware from [$(ls $KLL_BUILD_FIRMWARE_FILE)] to [../../$FIRMWARE_DIR] ==========="
-mv $KLL_BUILD_FIRMWARE_FILE ../../$FIRMWARE_DIR
+echo "============ Moving Firmware from [$(ls $KLL_BUILD_FIRMWARE_FILE)] to [$FIRMWARE_DIR] ==========="
+mv $KLL_BUILD_FIRMWARE_FILE $FIRMWARE_DIR
 
 echo ''
-echo '============ Finished building my whitefox keyboard ============='
+echo '============ Finished building KLL Firmware ============='
 echo ''

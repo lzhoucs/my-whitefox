@@ -1,5 +1,12 @@
 * QMK
-TODO
+** Build steps
+   1. From ~$QMK_REPO/keyboards/whitefox/keymaps~, create a symbolic link
+      pointing to ~qmk-keymaps~ dir
+      #+BEGIN_SRC sh
+ln -fs $KBD/qmk-keymaps/ lzhoucs
+      #+END_SRC
+   2. Run ~./build-qmk.sh~
+
 ** References
     - [[https://matt3o.com/how-to-build-your-whitefox/][Some info on whitefox qmk support]]
     - [[https://deskthority.net/viewtopic.php?f=7&t=14010&sid=8e3b7fa0546189ec11c018eb290c8d5e][WhiteFox on TMK]] and [[https://www.reddit.com/r/MechanicalKeyboards/comments/8glvw5/help_whitefox_is_not_happy_with_my_tmk/][reddit source]]
