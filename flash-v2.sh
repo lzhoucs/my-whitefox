@@ -15,7 +15,7 @@ if type dfu-util &>/dev/null; then
 		fi
 		sleep 0.1
 	done
-    dfu-util -D $MY_DIR/bins/$KLL_BIN_NAME
+    dfu-util -D $FIRMWARE_DIR/$FLASH_TARGET
 	EXIT_STATUS=$?
 else
 	echo "dfu-util is required to reprogram the device"

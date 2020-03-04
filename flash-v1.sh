@@ -11,7 +11,7 @@ echo ''
 echo '============ Start flashing my whitefox keyboard ============='
 echo ''
 
-dfu-util -D $MY_DIR/bins/$KLL_BIN_NAME
+dfu-util -D $FIRMWARE_DIR/$FLASH_TARGET
 
 echo ''
 echo '============ Finished flashing my whitefox keyboard ============='
