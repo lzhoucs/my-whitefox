@@ -35,19 +35,19 @@ Step 1 and 2 are only required once in an OS major version update. E.g darwin18
 vs darwin19.
 Step 3 is only required when new layer files are added.
 
-   1. Run ~./build-whitefox.sh~ once to generate ~../kiibohd-controller/Keyboards/<BuildDir>~.
+   1. Run ~./build-kll.sh~ once to generate ~../kiibohd-controller/Keyboards/<BuildDir>~.
      Note: ~BuildDir~ varies by os and other conditions. e.g: ~darwin18.MyWhiteFoxBuild.gcc.ninja~
    2. From the ~BuildDir~: ~../kiibohd-controller/Keyboards/<BuildDir>~, create symbolic link ~~myklls~ pointing to ~./klls~ dir
       #+BEGIN_SRC sh
 ln -s ../../../my-whitefox/klls/ myklls
       #+END_SRC
    3. Modify ~../kiibohd-controller/Keyboards/whitefox.bash~ to add any kll files in ~./kll/~
-   4. Rerun ~./build-whitefox.sh~ or use ~./build-whitefox.sh -f~ for fast mode build.
+   4. Rerun ~./build-kll.sh~ or use ~./build-kll.sh -f~ for fast mode build.
 ** Flash steps
 *** Approach 1(with virtual keyboard)
-  After build is done, enter ~./flash-whitefox.sh~ in command line, but before hitting <ENTER>, first enter flash mode, then use virtual keyboard to hit enter.
+  After build is done, enter ~./flash-v1.sh~ in command line, but before hitting <ENTER>, first enter flash mode, then use virtual keyboard to hit enter.
 *** Approach 2(without virtual keyboard)
-  After build is done, run ~./flash-whitefox-wait.sh~ in command line. Then enter flashMode with your key combination(`DELELE` + `ESC` for example)
+  After build is done, run ~./flash-v2.sh~ in command line. Then enter flashMode with your key combination(`DELELE` + `ESC` for example)
 ** TODOs
 - Output layout json as part of the build process
 ** References
