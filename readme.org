@@ -50,11 +50,6 @@ ln -s ../../../my-whitefox/klls/ myklls
       #+END_SRC
    3. Modify ~../kiibohd-controller/Keyboards/whitefox.bash~ to add any kll files in ~./kll/~
    4. Rerun ~./build-kll.sh~ or use ~./build-kll.sh -f~ for fast mode build.
-** Flash steps
-*** Approach 1(with virtual keyboard)
-  After build is done, enter ~./flash-v1.sh~ in command line, but before hitting <ENTER>, first enter flash mode, then use virtual keyboard to hit enter.
-*** Approach 2(without virtual keyboard)
-  After build is done, run ~./flash-v2.sh~ in command line. Then enter flashMode with your key combination(`DELELE` + `ESC` for example)
 ** TODOs
 - Output layout json as part of the build process
 ** References
@@ -64,5 +59,14 @@ ln -s ../../../my-whitefox/klls/ myklls
 *** Hack into kiibohd
    - Adding New Capabilities to Kiibohd: http://atlanis.net/blog/adding-new-capabilities-to-kiibohd/
 
+
+* Flash steps
+The flash steps are the same for both KLL and QMK keymaps. Whether to flash KLL
+or QMK is controlled by env variable ~FLASH_TARGET~ found in ~.env~ file
+
+** Approach 1(with virtual keyboard)
+  After build is done, enter ~./flash-v1.sh~ in command line, but before hitting <ENTER>, first enter flash mode, then use virtual keyboard to hit enter.
+** Approach 2(without virtual keyboard)
+  After build is done, run ~./flash-v2.sh~ in command line. Then enter flashMode with your key combination(`DELELE` + `ESC` for example)
 * Good ideas
   - holding "c" could actually work as "control + c": https://github.com/kiibohd/kll/issues/23#issuecomment-410558660
