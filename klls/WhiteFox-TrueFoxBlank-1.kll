@@ -38,4 +38,4 @@ U"RIGHT" : CONS"SCANNEXTTRACK";
 U"P": 'NST!851229';
 
 # rust run macro
-U"R": U"SPACE", 'mbr';
+U"R": U"ESC", U"SPACE", 'fs', U"SPACE", 'mbr';
