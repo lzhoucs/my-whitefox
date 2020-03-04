@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 
 # A wrapper over the target build command 'whitefox.bash'
-FIRMWARE_FILE=darwin1*.MyWhiteFoxBuild.gcc.ninja/kiibohd.dfu.bin
-FIRMWARE_DIR=my-whitefox/bins/
+
+MY_DIR=$(dirname "$0")
+
+# Load local variables
+source $MY_DIR/.env
 
 fast_mode=false
 
@@ -22,7 +25,7 @@ echo ''
 echo '============ Start building my whitefox keyboard ============='
 echo ''
 
-cd ../kiibohd-controller/Keyboards
+cd $MY_DIR/$KLL_BUILD_PATH
 
 if [ "$fast_mode" = false ] ; then
     echo 'fast_mode is off by default. Install dependencies...'
@@ -33,8 +36,8 @@ fi
 
 pipenv run ./whitefox.bash
 
-echo "============ Moving Firmware from [$(ls $FIRMWARE_FILE)] to [../../$FIRMWARE_DIR] ==========="
-mv $FIRMWARE_FILE ../../$FIRMWARE_DIR
+echo "============ Moving Firmware from [$(ls $KLL_BUILD_FIRMWARE_FILE)] to [../../$FIRMWARE_DIR] ==========="
+mv $KLL_BUILD_FIRMWARE_FILE ../../$FIRMWARE_DIR
 
 echo ''
 echo '============ Finished building my whitefox keyboard ============='

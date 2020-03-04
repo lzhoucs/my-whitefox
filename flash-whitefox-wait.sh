@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+MY_DIR=$(dirname "$0")
+
+# Load local variables
+source $MY_DIR/.env
+
 # the following is copied from controller/LoadFile/load.dfu
 if type dfu-util &>/dev/null; then
 	echo "Waiting for device..."
@@ -10,7 +15,7 @@ if type dfu-util &>/dev/null; then
 		fi
 		sleep 0.1
 	done
-	dfu-util -D kiibohd.dfu.bin
+    dfu-util -D $MY_DIR/bins/$KLL_BIN_NAME
 	EXIT_STATUS=$?
 else
 	echo "dfu-util is required to reprogram the device"
