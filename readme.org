@@ -1,16 +1,34 @@
-* Key programmings(mappings)
-** Get the USB Keycode
+* QMK
+TODO
+** References
+    - [[https://matt3o.com/how-to-build-your-whitefox/][Some info on whitefox qmk support]]
+    - [[https://deskthority.net/viewtopic.php?f=7&t=14010&sid=8e3b7fa0546189ec11c018eb290c8d5e][WhiteFox on TMK]] and [[https://www.reddit.com/r/MechanicalKeyboards/comments/8glvw5/help_whitefox_is_not_happy_with_my_tmk/][reddit source]]
+    - [[https://github.com/kiibohd/controller/issues/163][How does this(kiibohd) compare to TMK firmware?]]
+    - [[https://albertogrespan.com/blog/mk/flashing-qmk-on-a-whitefox/][Flashing QMK on a WhiteFox Mechanical Keyboard]]
+
+* KLL
+** Dependencies
+   - https://github.com/kiibohd/controller/
+   - https://github.com/kiibohd/kll
+** Key programmings(mappings)
+*** Get the USB Keycode
   The following way works for me. Go to [[https://configurator.input.club/][configurator]], inspect a particular key to get the key mapping:
   [[file:images/keycode.png]] 
 
   Then add double quotes. For example `CONS:MUTE` from the inspector becomes `CONS:"MUTE"` to be used in final key mapping
-* Build steps
-** Old way (no longer works after pipenv)
+*** Tips and tricks
+| Title                                           | Configurator  | kll file                                                 |
+|-------------------------------------------------+---------------+----------------------------------------------------------|
+| Clear a key so it falls through previous layers | Use ~CLR-KEY~ | Not do anything (make sure the key definition not exist) |
+| Clear a key so it do nothing                    | Use ~None~    | NONE, see: 5.2.2 None                                    |
+
+** Build steps
+*** Old way (no longer works after pipenv)
   - From ~../kiibohd-controller/kll/layouts~ dir, create symbolic link myklls pointing to ~./kll~ dir
   - Modify ~../kiibohd-controller/Keyboards/whitefox.bash~ to add any kll files in ~./kll/~
   - Run ~./build-whitefox.sh~
 
-** New way
+*** New way
 *Note*: This require fix: https://github.com/kiibohd/controller/commit/5dd72c2b5b36cd9c33e9d1061ece96a0b0c770ea
 
 Step 1 and 2 are only required once in an OS major version update. E.g darwin18
@@ -25,28 +43,19 @@ ln -s ../../../my-whiteFox-TrueFox/klls/ myklls
       #+END_SRC
    3. Modify ~../kiibohd-controller/Keyboards/whitefox.bash~ to add any kll files in ~./kll/~
    4. Rerun ~./build-whitefox.sh~ or use ~./build-whitefox.sh -f~ for fast mode build.
-* Flash steps
-** Approach 1(with virtual keyboard)
+** Flash steps
+*** Approach 1(with virtual keyboard)
   After build is done, enter ~./flash-whitefox.sh~ in command line, but before hitting <ENTER>, first enter flash mode, then use virtual keyboard to hit enter.
-** Approach 2(without virtual keyboard)
+*** Approach 2(without virtual keyboard)
   After build is done, run ~./flash-whitefox-wait.sh~ in command line. Then enter flashMode with your key combination(`DELELE` + `ESC` for example)
-* Tips and tricks
-| Title                                           | Configurator  | kll file                                                 |
-|-------------------------------------------------+---------------+----------------------------------------------------------|
-| Clear a key so it falls through previous layers | Use ~CLR-KEY~ | Not do anything (make sure the key definition not exist) |
-| Clear a key so it do nothing                    | Use ~None~    | NONE, see: 5.2.2 None                                    |
+** TODOs
+- Output layout json as part of the build process
+** References
+*** Key bindings
+   - https://github.com/kiibohd/KiiConf/issues/25#issuecomment-181032765
+   - https://github.com/kiibohd/KiiConf/wiki/Function-Layers
+*** Hack into kiibohd
+   - Adding New Capabilities to Kiibohd: http://atlanis.net/blog/adding-new-capabilities-to-kiibohd/
 
 * Good ideas
   - holding "c" could actually work as "control + c": https://github.com/kiibohd/kll/issues/23#issuecomment-410558660
-
-* Useful Links
-** Dependencies
-   - https://github.com/kiibohd/controller/
-   - https://github.com/kiibohd/kll
-** Key bindings
-   - https://github.com/kiibohd/KiiConf/issues/25#issuecomment-181032765
-   - https://github.com/kiibohd/KiiConf/wiki/Function-Layers
-** Hack into kiibohd
-   - Adding New Capabilities to Kiibohd: http://atlanis.net/blog/adding-new-capabilities-to-kiibohd/
-* TODOs
-- Output layout json as part of the build process
