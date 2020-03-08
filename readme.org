@@ -1,4 +1,8 @@
 * QMK
+** Env setup
+My setup is based on the official docs before major rework:
+https://github.com/qmk/qmk_firmware/pull/8252, more specifically, before this commit [[https://github.com/qmk/qmk_firmware/pull/8252/commits/5b3fb61b4eb8aad4e5a55cd6ca354004e96fcac8][a701c15d8 * Rework the newbs guide around
+the qmk cli]], which can still be accessed at: https://github.com/qmk/qmk_firmware/blob/4ef10a424ae1174bc108de9014dfd1f0ff6751e0/docs/newbs.md
 ** Build steps
    1. From ~$QMK_REPO/keyboards/whitefox/keymaps~, create a symbolic link
       pointing to ~qmk-keymaps~ dir
