@@ -10,7 +10,11 @@ the qmk cli]], which can still be accessed at: https://github.com/qmk/qmk_firmwa
 ln -fs $KBD/qmk-keymaps/ lzhoucs
       #+END_SRC
    2. Run ~./build-qmk.sh~
-
+** Issue and workaround
+- RESET doesn't work
+  See: [[https://github.com/qmk/qmk_firmware/issues/6112][open issue]], also
+  [[https://www.reddit.com/r/olkb/comments/8jfyzd/qmk_reset_and_magic_key_bootloader_not_working/][here
+  too]]
 ** References
     - [[https://matt3o.com/how-to-build-your-whitefox/][Some info on whitefox qmk support]]
     - [[https://deskthority.net/viewtopic.php?f=7&t=14010&sid=8e3b7fa0546189ec11c018eb290c8d5e][WhiteFox on TMK]] and [[https://www.reddit.com/r/MechanicalKeyboards/comments/8glvw5/help_whitefox_is_not_happy_with_my_tmk/][reddit source]]

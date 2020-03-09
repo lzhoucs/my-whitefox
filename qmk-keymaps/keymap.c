@@ -21,6 +21,8 @@ enum layers_user {
   L_FN
 };
 
+#define FN MO(L_FN)
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   /* Base Layer
@@ -35,7 +37,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * ├──────┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴────┬───┼───┤
    * │ LShift │ Z │ X │ C │ V │ B │ N │ M │ , │ . │ / │RSfRCt│ ↑ │NXL│
    * ├────┬───┴┬──┴─┬─┴───┴───┴───┴───┴───┴──┬┴───┼───┴┬─┬───┼───┼───┤
-   * │ NO │LAlt│LGui│         Space          │ NO │ NO │ │ ← │ ↓ │ → │
+   * │ NO │LAlt│LGui│         Space          │ NO │ FN │ │ ← │ ↓ │ → │
    * └────┴────┴────┴────────────────────────┴────┴────┘ └───┴───┴───┘
    */
     [L_BASE] = LAYOUT_truefox(
@@ -43,14 +45,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,	KC_Q,	KC_W,	KC_E,	KC_R,	KC_T,	KC_Y,	KC_U,	KC_I,	KC_O,	KC_P,	KC_LBRC,	KC_RBRC,	KC_BSPC,	KC_NO,
         KC_LCTL,	KC_A,	KC_S,	KC_D,	KC_F,	KC_G,	KC_H,	KC_J,	KC_K,	KC_L,	KC_SCLN,KC_QUOT,	KC_ENT,	KC_NO,
         KC_LSFT,	KC_Z,	KC_X,	KC_C,	KC_V,	KC_B,	KC_N,	KC_M,	KC_COMM,KC_DOT, KC_SLSH,KC_NO,		KC_UP,		KC_NO,
-        KC_NO,		KC_LALT,KC_LGUI,		KC_SPC, KC_NO,	KC_NO,	KC_LEFT,KC_DOWN,KC_RGHT),
+        KC_NO,		KC_LALT,KC_LGUI,		KC_SPC, KC_NO,	FN,	KC_LEFT,KC_DOWN,KC_RGHT),
 
   /* Function layer
    *
    *  Other than explicitly defined keys, other keys will be explicitly set to NO. This is because Fn layer is usually short lived, temporarly layer,
    * and we don't want any other keys to be functional from previous layer(TRNS)
    * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐
-   * │NO │F1 │F2 │F3 │F4 │F5 │F6 │F7 │F8 │F9 │F10│F11│F12│NO │NO │NO │
+   * │NO │F1 │F2 │F3 │F4 │F5 │F6 │F7 │F8 │F9 │F10│F11│F12│NO │NO │FLS│
    * ├───┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴───┼───┤
    * │ NO  │NO │NO │NO │NO │NO │NO │NO │NO │NO │NO │NO │NO │ NO  │NO │
    * ├─────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴─────┼───┤
@@ -61,8 +63,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * │ NO | NO │ NO │        NO              │ NO │ NO │ |NO │NO |NO |
    * └────┴────┴────┴────────────────────────┴────┴────┘ └───┴───┴───┘
    */
-  [L_FN] = LAYOUT_truefox( \
-    KC_NO,	KC_F1,	KC_F2,	KC_F3,	KC_F4,	KC_F5,	KC_F6,	KC_F7,	KC_F8,	KC_F9,	KC_F10,	KC_F11,	KC_F12,	KC_NO,	KC_NO,	KC_NO,
+  [L_FN] = LAYOUT_truefox(
+    KC_NO,	KC_F1,	KC_F2,	KC_F3,	KC_F4,	KC_F5,	KC_F6,	KC_F7,	KC_F8,	KC_F9,	KC_F10,	KC_F11,	KC_F12,	KC_NO,	KC_NO,	RESET,
     KC_NO,	KC_NO,	KC_NO,	KC_NO,	KC_NO,	KC_NO,	KC_NO,	KC_NO,	KC_NO,	KC_NO,	KC_NO,		KC_NO,		KC_NO,		KC_NO,	KC_NO,
     KC_NO,	KC_NO,	KC_NO,	KC_NO,	KC_NO,	KC_NO,	KC_NO,	KC_NO,	KC_NO,	KC_NO,	KC_NO,		KC_NO,		KC_NO,		KC_NO,
     KC_NO,	KC_NO,	KC_NO,	KC_NO,	KC_NO,	KC_NO,	KC_NO,	KC_NO,	KC_NO,	KC_NO,	KC_NO,		KC_NO,		KC_NO,		KC_NO,
