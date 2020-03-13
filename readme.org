@@ -21,6 +21,7 @@ ln -fs $KBD/qmk-keymaps/ lzhoucs
     - [[https://github.com/kiibohd/controller/issues/163][How does this(kiibohd) compare to TMK firmware?]]
     - [[https://albertogrespan.com/blog/mk/flashing-qmk-on-a-whitefox/][Flashing QMK on a WhiteFox Mechanical Keyboard]]
     - [[https://docs.qmk.fm/#/keycodes][Keycodes]]
+    - [[https://docs.qmk.fm/#/config_options][Config Options]]
     - [[https://config.qmk.fm/][QMK Web Configurator]]
 * KLL
 ** Dependencies
