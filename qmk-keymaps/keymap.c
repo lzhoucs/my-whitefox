@@ -15,22 +15,30 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include QMK_KEYBOARD_H
+#include "dynamic_macro.h"
 
-enum layers_user {
+enum my_layers {
   L_BASE,
   L_FN
 };
 
-#define FN MO(L_FN)
 enum my_keycodes {
   ANY = SAFE_RANGE
 };
+
+enum my_tap_dances {
+  _MCROTOG
+};
+
+// key shorthand
+#define FN MO(L_FN)
+#define MCROTOG TD(_MCROTOG)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   /* Base Layer
    *
-   *  PRO = Programming, NXL = Next Layer, ANY = Any Key, NO = Not Defined yet, RsfRct = To be discovered
+   *  PRO = Programming, NXL = Next Layer, ANY = Any Key, NO = Not Defined yet
    * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐
    * │Esc│ 1 │ 2 │ 3 │ 4 │ 5 │ 6 │ 7 │ 8 │ 9 │ 0 │ - │ = │ ` │ \ │PRO│
    * ├───┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴───┼───┤
@@ -38,7 +46,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * ├─────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴─────┼───┤
    * │MT_CE │ A │ S │ D │ F │ G │ H │ J │ K │ L │ ; │ ' │ Enter  │PXL│
    * ├──────┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴────┬───┼───┤
-   * │ LShift │ Z │ X │ C │ V │ B │ N │ M │ , │ . │ / │RSfRCt│ ↑ │NXL│
+   * │ LShift │ Z │ X │ C │ V │ B │ N │ M │ , │ . │ / │MCROTG│ ↑ │NXL│
    * ├────┬───┴┬──┴─┬─┴───┴───┴───┴───┴───┴──┬┴───┼───┴┬─┬───┼───┼───┤
    * │ NO │LAlt│LGui│         Space          │ NO │ FN │ │ ← │ ↓ │ → │
    * └────┴────┴────┴────────────────────────┴────┴────┘ └───┴───┴───┘
@@ -47,7 +55,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_ESC,		KC_1,	KC_2,	KC_3,	KC_4,	KC_5,	KC_6,	KC_7,	KC_8,	KC_9,	KC_0,	KC_MINS,	KC_EQL,	KC_GRV,	KC_BSLS,	KC_NO,
         KC_TAB,		KC_Q,	KC_W,	KC_E,	KC_R,	KC_T,	KC_Y,	KC_U,	KC_I,	KC_O,	KC_P,	KC_LBRC,	KC_RBRC,	KC_BSPC,	ANY,
         CTL_T(KC_ESC),	KC_A,	KC_S,	KC_D,	KC_F,	KC_G,	KC_H,	KC_J,	KC_K,	KC_L,	KC_SCLN,KC_QUOT,	KC_ENT,	KC_NO,
-        KC_LSFT,		KC_Z,	KC_X,	KC_C,	KC_V,	KC_B,	KC_N,	KC_M,	KC_COMM,KC_DOT, KC_SLSH,KC_NO,		KC_UP,		KC_NO,
+        KC_LSFT,		KC_Z,	KC_X,	KC_C,	KC_V,	KC_B,	KC_N,	KC_M,	KC_COMM,KC_DOT, KC_SLSH,MCROTOG,	KC_UP,		KC_NO,
         KC_NO,			KC_LALT,KC_LGUI,		KC_SPC, KC_NO,	FN,	KC_LEFT,KC_DOWN,KC_RGHT),
 
   /* Function layer
@@ -75,11 +83,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_NO,	KC_NO,	KC_NO,	KC_NO,	KC_NO,	KC_NO,	KC_MPRV,	KC_VOLD,	KC_MNXT),
 };
 
-
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-     if (record->event.pressed) {
-        dprintf("kc: %u", keycode);
-      }
+  if ( !process_record_dynamic_macro( keycode, record ) ) {
+    return false;
+  }
+
+  if (record->event.pressed) {
+      dprintf("kc: %u", keycode);
+  }
 
   switch (keycode) {
     case ANY:
@@ -93,3 +104,28 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
 }
 
+void _macro_tog_key( qk_tap_dance_state_t *state, void *user_data ) {
+  if ( state->count > 3 )
+    return;
+
+  keyrecord_t kr;
+  kr.event.pressed = false;
+  uint16_t action = DYN_REC_STOP;
+
+  if ( state->count == 1 ) {
+    action = DYN_MACRO_PLAY1;
+  }
+  else if ( state->count == 2 ) {
+    action = DYN_REC_STOP;
+    kr.event.pressed = true;
+  }
+  else if ( state->count == 3 ) {
+    action = DYN_REC_START1;
+  }
+
+  process_record_dynamic_macro( action, &kr );
+}
+
+qk_tap_dance_action_t tap_dance_actions[] = {
+    [_MCROTOG]  = ACTION_TAP_DANCE_FN( _macro_tog_key )
+};
