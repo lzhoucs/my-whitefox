@@ -48,7 +48,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * ├──────┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴────┬───┼───┤
    * │ LShift │ Z │ X │ C │ V │ B │ N │ M │ , │ . │ / │MCROTG│ ↑ │NXL│
    * ├────┬───┴┬──┴─┬─┴───┴───┴───┴───┴───┴──┬┴───┼───┴┬─┬───┼───┼───┤
-   * │ NO │LAlt│LGui│         Space          │ NO │ FN │ │ ← │ ↓ │ → │
+   * │LEAD│LAlt│LGui│         Space          │ NO │ FN │ │ ← │ ↓ │ → │
    * └────┴────┴────┴────────────────────────┴────┴────┘ └───┴───┴───┘
    */
     [L_BASE] = LAYOUT_truefox(
@@ -56,7 +56,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,		KC_Q,	KC_W,	KC_E,	KC_R,	KC_T,	KC_Y,	KC_U,	KC_I,	KC_O,	KC_P,	KC_LBRC,	KC_RBRC,	KC_BSPC,	ANY,
         CTL_T(KC_ESC),	KC_A,	KC_S,	KC_D,	KC_F,	KC_G,	KC_H,	KC_J,	KC_K,	KC_L,	KC_SCLN,KC_QUOT,	KC_ENT,	KC_NO,
         KC_LSFT,		KC_Z,	KC_X,	KC_C,	KC_V,	KC_B,	KC_N,	KC_M,	KC_COMM,KC_DOT, KC_SLSH,MCROTOG,	KC_UP,		KC_NO,
-        KC_NO,			KC_LALT,KC_LGUI,		KC_SPC, KC_NO,	FN,	KC_LEFT,KC_DOWN,KC_RGHT),
+        KC_LEAD,		KC_LALT,KC_LGUI,		KC_SPC, KC_NO,	FN,	KC_LEFT,KC_DOWN,KC_RGHT),
 
   /* Function layer
    *
@@ -129,3 +129,17 @@ void _macro_tog_key( qk_tap_dance_state_t *state, void *user_data ) {
 qk_tap_dance_action_t tap_dance_actions[] = {
     [_MCROTOG]  = ACTION_TAP_DANCE_FN( _macro_tog_key )
 };
+
+// leader key
+LEADER_EXTERNS();
+
+void matrix_scan_user(void) {
+  LEADER_DICTIONARY() {
+    leading = false;
+    leader_end();
+
+    SEQ_ONE_KEY(KC_P) {
+      SEND_STRING(MY_PSWD);
+    }
+  }
+}
