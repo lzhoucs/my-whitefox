@@ -43,5 +43,5 @@ CONSOLE_ENABLE = yes	# Console for debug
 # BACKLIGHT_DRIVER = custom
 # VISUALIZER_ENABLE = yes
 
-TAP_DANCE_ENABLE = yes
+TAP_DANCE_ENABLE = false
 LEADER_ENABLE = yes

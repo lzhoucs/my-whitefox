@@ -23,16 +23,12 @@ enum my_layers {
 };
 
 enum my_keycodes {
-  ANY = SAFE_RANGE
-};
-
-enum my_tap_dances {
-  _MCROTOG
+  ANY = SAFE_RANGE,
+  MY_MACROS
 };
 
 // key shorthand
 #define FN MO(L_FN)
-#define MCROTOG TD(_MCROTOG)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -46,7 +42,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * ├─────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴─────┼───┤
    * │MT_CE │ A │ S │ D │ F │ G │ H │ J │ K │ L │ ; │ ' │ Enter  │PXL│
    * ├──────┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴────┬───┼───┤
-   * │ LShift │ Z │ X │ C │ V │ B │ N │ M │ , │ . │ / │MCROTG│ ↑ │NXL│
+   * │ LShift │ Z │ X │ C │ V │ B │ N │ M │ , │ . │ / │MACROS│ ↑ │NXL│
    * ├────┬───┴┬──┴─┬─┴───┴───┴───┴───┴───┴──┬┴───┼───┴┬─┬───┼───┼───┤
    * │LEAD│LAlt│LGui│         Space          │ NO │ FN │ │ ← │ ↓ │ → │
    * └────┴────┴────┴────────────────────────┴────┴────┘ └───┴───┴───┘
@@ -55,7 +51,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_ESC,		KC_1,	KC_2,	KC_3,	KC_4,	KC_5,	KC_6,	KC_7,	KC_8,	KC_9,	KC_0,	KC_MINS,	KC_EQL,	KC_GRV,	KC_BSLS,	KC_NO,
         KC_TAB,		KC_Q,	KC_W,	KC_E,	KC_R,	KC_T,	KC_Y,	KC_U,	KC_I,	KC_O,	KC_P,	KC_LBRC,	KC_RBRC,	KC_BSPC,	ANY,
         CTL_T(KC_ESC),	KC_A,	KC_S,	KC_D,	KC_F,	KC_G,	KC_H,	KC_J,	KC_K,	KC_L,	KC_SCLN,KC_QUOT,	KC_ENT,	KC_NO,
-        KC_LSFT,		KC_Z,	KC_X,	KC_C,	KC_V,	KC_B,	KC_N,	KC_M,	KC_COMM,KC_DOT, KC_SLSH,MCROTOG,	KC_UP,		KC_NO,
+        KC_LSFT,		KC_Z,	KC_X,	KC_C,	KC_V,	KC_B,	KC_N,	KC_M,	KC_COMM,KC_DOT, KC_SLSH,MY_MACROS,			KC_UP,		KC_NO,
         KC_LEAD,		KC_LALT,KC_LGUI,		KC_SPC, KC_NO,	FN,	KC_LEFT,KC_DOWN,KC_RGHT),
 
   /* Function layer
@@ -83,52 +79,53 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_NO,	KC_NO,	KC_NO,	KC_NO,	KC_NO,	KC_NO,	KC_MPRV,	KC_VOLD,	KC_MNXT),
 };
 
+uint16_t todo_timer = 0;
+bool is_dyn_rec_started = false;
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  if ( !process_record_dynamic_macro( keycode, record ) ) {
-    return false;
-  }
 
   if (record->event.pressed) {
       dprintf("kc: %u", keycode);
   }
 
   switch (keycode) {
-    case ANY:
+    case MY_MACROS:
+
       if (record->event.pressed) {
-        // TODO
+        todo_timer = timer_read();
+
+      } else {
+        keyrecord_t kr;
+        kr.event.pressed = false;
+
+        if (timer_elapsed(todo_timer) > MY_DYN_REC_START_TIMEOUT) {
+          is_dyn_rec_started = true;
+          // Can make minor improvement by always stopping previous one, however need to probably set kr.event.pressed = false for stop to work which
+          // I really don't understand why.
+          /* process_record_dynamic_macro( DYN_REC_STOP, &kr); */
+          process_record_dynamic_macro( DYN_REC_START1, &kr);
+        } else {
+          if (is_dyn_rec_started) {
+            kr.event.pressed = true;
+            process_record_dynamic_macro( DYN_REC_STOP, &kr);
+            is_dyn_rec_started = false;
+          } else {
+            process_record_dynamic_macro( DYN_MACRO_PLAY1, &kr);
+          }
+        }
       }
-      /* return false; // Skip all further processing of this key */
+
+      return false;
 
     default:
+
+      if ( !process_record_dynamic_macro( keycode, record ) ) {
+        return false;
+      }
+
       return true; // Process all other keycodes normally
   }
 }
-
-void _macro_tog_key( qk_tap_dance_state_t *state, void *user_data ) {
-  if ( state->count > 3 )
-    return;
-
-  keyrecord_t kr;
-  kr.event.pressed = false;
-  uint16_t action = DYN_REC_STOP;
-
-  if ( state->count == 1 ) {
-    action = DYN_MACRO_PLAY1;
-  }
-  else if ( state->count == 2 ) {
-    action = DYN_REC_STOP;
-    kr.event.pressed = true;
-  }
-  else if ( state->count == 3 ) {
-    action = DYN_REC_START1;
-  }
-
-  process_record_dynamic_macro( action, &kr );
-}
-
-qk_tap_dance_action_t tap_dance_actions[] = {
-    [_MCROTOG]  = ACTION_TAP_DANCE_FN( _macro_tog_key )
-};
 
 // leader key
 LEADER_EXTERNS();
