@@ -23,6 +23,8 @@ ln -fs $KBD/qmk-keymaps/ lzhoucs
     - [[https://docs.qmk.fm/#/keycodes][Keycodes]]
     - [[https://docs.qmk.fm/#/config_options][Config Options]]
     - [[https://config.qmk.fm/][QMK Web Configurator]]
+    - [[https://www.keebtalk.com/t/show-me-your-favorite-qmk-hacks/2682][QMK Hacks]]
+    - [[https://www.reddit.com/r/olkb/comments/a0texz/whatre_your_favorite_qmk_hacks/][QMK Hacks 2]]
 * KLL
 ** Dependencies
    - https://github.com/kiibohd/controller/
