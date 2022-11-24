@@ -65,3 +65,19 @@ If keyboard and keymap are configured above
 #+begin_src sh
   qmk flash
 #+end_src
+
+Note we don't have to worry about where did qmk generate the bin file, it's generating to a location it can find during flashing
+
+* Troubleshooting
+- .dfu-util: Cannot open DFU device 1c11:b007 found on devnum 49 (LIBUSB_ERROR_ACCESS)
+  See [[https://docs.qmk.fm/#/faq_build?id=cant-program-on-linux][docs]]. Basically, do the following:
+  #+begin_src sh
+    echo 'SUBSYSTEMS=="usb", ATTRS{idVendor}=="1c11", ATTRS{idProduct}=="b007", TAG+="uaccess"' > /etc/udev/rules.d/98-inputclub-qmk.rules
+  #+end_src
+
+* References
+- [[https://github.com/qmk/qmk_firmware/blob/master/quantum/keycode.h][keycodes]]
+- [[https://docs.qmk.fm/#/keycodes][keycodes]]
+
+* TODOs
+- compare qmk console to hid-listen-console

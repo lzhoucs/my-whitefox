@@ -8,4 +8,5 @@ elif [ "$1" = "flash" ]; then
 	qmk flash
 else
 	echo "Specify either compile or flash as argument"
+	exit 0
 fi

@@ -31,10 +31,16 @@ enum my_keycodes {
 #define FN MO(L_FN)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+  /*
+   * Special keys:
+   * PRO = Programming
+   * NXL = Next Layer
+   * ANY = Any Key
+   * NO = Not Defined yet
+   */
 
   /* Base Layer
    *
-   *  PRO = Programming, NXL = Next Layer, ANY = Any Key, NO = Not Defined yet
    * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐
    * │Esc│ 1 │ 2 │ 3 │ 4 │ 5 │ 6 │ 7 │ 8 │ 9 │ 0 │ - │ = │ ` │ \ │PRO│
    * ├───┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴───┼───┤
@@ -136,7 +142,7 @@ void matrix_scan_user(void) {
     leader_end();
 
     SEQ_ONE_KEY(KC_P) {
-      SEND_STRING(MY_PSWD);
+      SEND_STRING(LEADER_P);
     }
   }
 }
