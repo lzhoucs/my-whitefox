@@ -1,0 +1,67 @@
+* Set up
+- create virtualenv
+  #+begin_src sh
+    python -m venv venv
+  #+end_src
+- install qmk cli
+  #+begin_src sh
+    pip install qmk
+  #+end_src
+- clone qmk/qmk_firmware
+  #+begin_src sh
+    git clone git@github.com:qmk/qmk_firmware.git
+  #+end_src
+  keep ~master~ branch up to date, see [[https://docs.qmk.fm/#/newbs_git_using_your_master_branch?id=your-forks-master-update-often-commit-never][docs]]
+- install dependencies
+  the following packages are required:
+  - arm-none-eabi-newlib (required even though not listed when running qmk setup, compile will fail without it)
+  - arm-none-eabi-gcc
+  - avr-gcc
+  - avrdude
+  - dfu-programmer
+  - dfu-util
+- activate venv
+  #+begin_src sh
+    source venv/bin/activate
+  #+end_src
+- run qmk setup specifying the qmk repo location
+  #+begin_src sh
+    # inside venv
+    qmk setup -H $KBD/qmk_firmware
+  #+end_src
+  this step will create config file ~$HOME/.config/qmk/qmk.ini~ containing the specified qmk repo location
+- config keyboard and keymap
+
+  Note: this step is optional. If not done, config will not be updated and we need to explicitly specify keyboard and keymap with:
+  #+begin_src sh
+    qmk compile --keyboard input_club/whitefox --keymap lzhoucs
+  #+end_src
+
+  - set keyboard
+
+    find keyboard with ~qmk list-keyboards | fzf~, then update config
+    #+begin_src
+      qmk config user.keyboard=input_club/whitefox
+    #+end_src
+  - set keymap
+
+    symbolic link my keymap
+    #+begin_src
+      cd qmk_firmware/keyboards/input_club/whitefox/keymaps
+      ln -s $KBD/qmk-keymaps lzhoucs
+    #+end_src
+    then update config:
+    #+begin_src sh
+      qmk config user.keymap=lzhoucs
+    #+end_src
+* Compile
+If keyboard and keymap are configured above
+#+begin_src sh
+  qmk compile
+#+end_src
+
+* Flash
+If keyboard and keymap are configured above
+#+begin_src sh
+  qmk flash
+#+end_src
