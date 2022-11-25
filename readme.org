@@ -78,6 +78,8 @@ Note we don't have to worry about where did qmk generate the bin file, it's gene
 * References
 - [[https://github.com/qmk/qmk_firmware/blob/master/quantum/keycode.h][keycodes]]
 - [[https://docs.qmk.fm/#/keycodes][keycodes]]
+- [[https://docs.qmk.fm/#/config_options][configs]]
+- [[https://matt3o.com/whitefox-faq/][whitefox info]]
 
 * TODOs
 - compare qmk console to hid-listen-console

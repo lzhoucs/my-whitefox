@@ -30,7 +30,7 @@
 # Build Options
 #   comment out to disable the options.
 #
-BOOTMAGIC_ENABLE = no	# Virtual DIP switch configuration
+MAGIC_ENABLE = no
 ## (Note that for BOOTMAGIC on Teensy LC you have to use a custom .ld script.)
 MOUSEKEY_ENABLE = no	# Mouse keys
 # EXTRAKEY_ENABLE = yes	# Audio control and System control
@@ -45,3 +45,10 @@ CONSOLE_ENABLE = yes	# Console for debug
 
 TAP_DANCE_ENABLE = false
 LEADER_ENABLE = yes
+LED_MATRIX_ENABLE = yes
+
+# longer compile time, smaller size
+LTO_ENABLE = yes
+SPACE_CADET_ENABLE = no
+GRAVE_ESC_ENABLE = no
+MUSIC_ENABLE = no

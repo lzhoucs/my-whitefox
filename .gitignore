@@ -1,2 +1,3 @@
 /venv
 /qmk_firmware
+local.h
